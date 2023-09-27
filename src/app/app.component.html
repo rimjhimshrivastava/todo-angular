@@ -1,0 +1,69 @@
+<!-- HEADING -->
+<h1><i class="fa-solid fa-list"></i> Todo List App</h1>
+
+<!-- CONTAINER FOR THE APP -->
+<div id="container">
+
+    <!-- FORM to collect data -->
+    <form action="javascript:(0)" novalidate>
+
+        <label class="label">Add Task</label><br>
+        <input [(ngModel)]="newTask.name" name="name" placeholder="What are your plans?" class="add-task" id="add">
+
+        <label class="label">Due Date</label>
+        <label class="label pos-category">Category</label><br>
+        <input [(ngModel)]="newTask.duedate" name="duedate" type="date" class="add-task smalladd" id="add">
+
+        <select [(ngModel)]="newTask.category" name="category" class="add-task smalladd" id="add">
+            <option value="Study">Study</option>
+            <option value="Assignment">Assignment</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Workout">Workout</option>
+            <option value="Recreational">Recreational</option>
+        </select>
+
+        <!-- to calculate count for total tasks -->
+        <button (click)="addTask()" type="submit" class="button">Add Task</button><br>
+
+        <span id="total-tasks">Total tasks:
+            <span id="tasks-counter">
+                {{totalTasks}}
+            </span>
+        </span>
+    </form>
+
+    <!-- MAKING LIST -->
+    <ul id="list">
+        <div *ngFor="let todo of todo_list">
+            <input type="checkbox" id="{{todo._id}}" class="custom-checkbox">
+            <label for="{{todo._id}}">
+                {{todo.name}}
+            </label>
+            <span class="category-box">
+                {{todo.category}}
+            </span>
+            <a href="">
+                <i class="fa-solid fa-trash delete"></i>
+            </a>
+            <div class="date-box">
+                <i class="fa-solid fa-calendar-days "></i>
+                {{todo.duedate}}
+            </div><br>
+        </div>
+                <!-- <li>
+      <input type="checkbox" id="task1" data-id="12" class="custom-checkbox">
+      <label for="task1">Buy groceries</label>
+      <img src="bin.svg" class="delete" data-id="12" />
+    </li> -->
+
+
+    </ul>
+</div>
+
+
+
+<script src="https://kit.fontawesome.com/133845b97a.js" crossorigin="anonymous"></script>
+
+
+
+<router-outlet></router-outlet>
